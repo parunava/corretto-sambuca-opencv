@@ -1,4 +1,4 @@
-FROM ghcr.io/hylandsoftware/corretto-sambuca:20250321@sha256:ebc03eed0f5a7c89f4841353d95689d230af305e900cb3686b5fa33a4bdfe2b1
+FROM ghcr.io/hylandsoftware/corretto-sambuca:20250502@sha256:21ab841a2ae430f2d8ea53c292c4b4bb9314abe715c6d975edbcd709d1172595
 
 ARG BUILD_DATE
 ARG COMMIT_SHA
