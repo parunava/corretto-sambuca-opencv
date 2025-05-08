@@ -6,7 +6,7 @@ ARG COMMIT_SHA
 ARG BUILD_URL
 
 LABEL org.opencontainers.image.title="Hyland Experience Amazon Corretto Sambuca Image" \
- org.opencontainers.image.source="https://github.com/HylandSoftware/corretto-sambuca-opencv" \
+ org.opencontainers.image.source="https://github.com/parunava/corretto-sambuca-opencv" \
  org.opencontainers.image.created=$BUILD_DATE \
  org.opencontainers.image.revision=$COMMIT_SHA \
  org.opencontainers.image.url=$BUILD_URL
