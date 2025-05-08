@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '0 9 * * 1' # Every Monday at 09:00 AM UTC
 
-#permissions:
+permissions: read-all|write-all
 #  id-token: write
 #  checks: write
 #  security-events: write
