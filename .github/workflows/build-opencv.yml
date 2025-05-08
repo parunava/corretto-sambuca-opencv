@@ -45,7 +45,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/hylandsoftware/corretto-sambuca-opencv:${{ env.IMAGE_TAG }}
+          tags: ghcr.io/parunava/corretto-sambuca-opencv:${{ env.IMAGE_TAG }}
           platforms: linux/amd64,linux/arm64/v8
           build-args: |
             BUILD_DATE=$(date -u "+%Y-%m-%dT%H:%M:%S")
