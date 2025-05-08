@@ -5,8 +5,15 @@ on:
   schedule:
     - cron: '0 9 * * 1' # Every Monday at 09:00 AM UTC
 
-jobs:
+permissions:
+  id-token: write
+  checks: write
+  security-events: write
+  actions: read
+  contents: read
+  packages: write
 
+jobs:
   build-opencv-and-push-to-ghcr:
     name: Build and Push OpenCV To GHCR
     runs-on: ubuntu-latest
