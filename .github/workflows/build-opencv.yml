@@ -52,4 +52,3 @@ jobs:
             BUILD_DATE=$(date -u "+%Y-%m-%dT%H:%M:%S")
             COMMIT_SHA=${{ github.sha }}
             BUILD_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          outputs: type=image,push-by-digest=true,name-canonical=true,push=true
