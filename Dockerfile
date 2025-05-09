@@ -16,13 +16,13 @@ RUN apk --no-cache -U upgrade
 RUN apk --no-cache add clang cmake ninja wget linux-headers python3
 
 # Build and install OpenCV
-#RUN set -ex && \
-#	wget -O opencv.zip https://github.com/opencv/opencv/archive/4.10.0.zip && \
-#	unzip opencv.zip && \
-#	mv opencv-4.10.0 opencv && \
-#	mkdir -p build && cd build && \
-#	cmake -DBUILD_SHARED_LIBS=OFF -GNinja ../opencv && \
-#	ninja && \
-#	rm /opencv.zip
+RUN set -ex && \
+	wget -O opencv.zip https://github.com/opencv/opencv/archive/4.10.0.zip && \
+	unzip opencv.zip && \
+	mv opencv-4.10.0 opencv && \
+	mkdir -p build && cd build && \
+	cmake -DBUILD_SHARED_LIBS=OFF -GNinja ../opencv && \
+	ninja && \
+	rm /opencv.zip
 
 RUN apk del wget
