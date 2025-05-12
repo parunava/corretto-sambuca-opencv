@@ -16,14 +16,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64/v8
+#        platform:
+#          - linux/amd64
+#          - linux/arm64/v8
         include:
           - os: ubuntu-latest
             arch: amd64
+            platform: linux/amd64
           - os: ubuntu-22.04-arm
             arch: arm64
+            platform: linux/arm64/v8
 
     steps:
       - name: Checkout
@@ -52,7 +54,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/parunava/corretto-sambuca-opencv:${{ env.IMAGE_TAG }}
-#          platforms: ${{ matrix.platform }}
+          platforms: ${{ matrix.platform }}
           build-args: |
             BUILD_DATE=$(date -u "+%Y-%m-%dT%H:%M:%S")
             COMMIT_SHA=${{ github.sha }}
