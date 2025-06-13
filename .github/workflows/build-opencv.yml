@@ -42,13 +42,13 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_PACKAGES_RO_PAT }}
 
       - name: Generate tag for staging image
         run: echo "IMAGE_TAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - name: Download binaries
-        run: "curl -L -H \"Accept: application/octet-stream\" -H \"Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}\" -H \"X-GitHub-Api-Version: 2022-11-28\" -o ${{ runner.temp }}/opencv-binaries.zip https://api.github.com/repos/HylandSoftware/corretto-grappa/releases/assets/262544797"
+        run: "curl -L -H \"Accept: application/octet-stream\" -H \"Authorization: Bearer ${{ secrets.GH_PACKAGES_RO_PAT }}\" -H \"X-GitHub-Api-Version: 2022-11-28\" -o ${{ runner.temp }}/opencv-binaries.zip https://api.github.com/repos/HylandSoftware/corretto-grappa/releases/assets/262544797"
 
       - name: List binaries
         run: ls -l ${{ runner.temp }}
