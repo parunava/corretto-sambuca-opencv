@@ -13,19 +13,19 @@ jobs:
   build-opencv-and-push-to-ghcr:
     name: Build and Push OpenCV To GHCR
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
 #        platform:
 #          - linux/amd64
 #          - linux/arm64/v8
-        include:
-          - os: ubuntu-latest
-            arch: amd64
-            platform: linux/amd64
-          - os: ubuntu-22.04-arm
-            arch: arm64
-            platform: linux/arm64/v8
+        # include:
+        #   - os: ubuntu-latest
+        #     arch: amd64
+        #     platform: linux/amd64
+        #   - os: ubuntu-22.04-arm
+        #     arch: arm64
+        #     platform: linux/arm64/v8
 
     steps:
       - name: Checkout
@@ -47,18 +47,26 @@ jobs:
       - name: Generate tag for staging image
         run: echo "IMAGE_TAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
-      - name: Get token
-        run: echo $(gh auth token)
+      - name: Download binaries
+        run: curl -L \
+             -H "Accept: application/octet-stream" \
+             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+             -H "X-GitHub-Api-Version: 2022-11-28" \
+             -o ${{ runner.temp }}/opencv-binaries.zip \
+             https://api.github.com/repos/HylandSoftware/corretto-grappa/releases/assets/262544797
 
-      - name: Build and push staging image
-        uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ghcr.io/parunava/corretto-sambuca-opencv:${{ env.IMAGE_TAG }}
-          platforms: ${{ matrix.platform }}
-          build-args: |
-            BUILD_DATE=$(date -u "+%Y-%m-%dT%H:%M:%S")
-            COMMIT_SHA=${{ github.sha }}
-            BUILD_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - name: Download binaries
+        run: ls -l ${{ runner.temp }}
+
+      # - name: Build and push staging image
+      #   uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile
+      #     push: true
+      #     tags: ghcr.io/parunava/corretto-sambuca-opencv:${{ env.IMAGE_TAG }}
+      #     platforms: ${{ matrix.platform }}
+      #     build-args: |
+      #       BUILD_DATE=$(date -u "+%Y-%m-%dT%H:%M:%S")
+      #       COMMIT_SHA=${{ github.sha }}
+      #       BUILD_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
