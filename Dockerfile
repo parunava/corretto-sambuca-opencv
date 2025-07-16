@@ -1,4 +1,4 @@
-FROM amazoncorretto:21-alpine-jdk@sha256:937a7f5c5f7ec41315f1c7238fd9ec0347684d6d99e086db81201ca21d1f5778
+FROM amazoncorretto:21-alpine-jdk@sha256:5c58f6ac8887ae9c1ebba3b80c2392a40eabfcae8e7e138ec16611ad464b1151
 #FROM ghcr.io/hylandsoftware/corretto-sambuca:20250502@sha256:21ab841a2ae430f2d8ea53c292c4b4bb9314abe715c6d975edbcd709d1172595
 
 ARG BUILD_DATE
